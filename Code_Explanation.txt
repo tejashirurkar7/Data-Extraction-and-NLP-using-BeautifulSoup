@@ -1,0 +1,306 @@
+@1. Requests - it is a library in python for making HTTP requests to interact with APIs and web services. it simplifies the sending requests like GET,POST,
+PUT,DELETE and it also handles the responses of JSON format (JavaScript Object Notation) , text format, Binary Format.
+
+use cases of requests - 
+1. web scraping - requests library is paired with beautifulsoup library for scraping data from websites. It fetches HTML content from web pages, which is
+then parsed to extract specific information like news articles, or any type of product prices
+
+2. API integration - we can use requests library to communicate with various web APIs such as social media APIs, weather APIs, payment gateways. for 
+example we can fetch data from a weather API to display current weather conditions on our website
+
+3. Data Collection - we can fetch data from datasets, downloading files, or accessing databases through APIs
+
+
+
+@2 beautifulsoup4 - it is a python library used for parsing HTML (Hypertext markup language) and XML (Extensible markup language) documents,
+particularly used for web scraping tasks. Beautifulsoup simplifies the process of extracting data from web pages by providing methods to navigate
+and manipulate the parse tree
+
+1. Parsing HTML/XML: Beautiful soup4 converts raw HTML/XML content into a structured
+parse tree of python objects, making it easy to navigate and search for specific elements
+
+2. Navigating the parse tree: Methods like 'find', 'find_all' and CSS selectors ('select')
+allow developers to locate elements based on tags, attributes, text content, or 
+hierarchical relationships
+
+3. Extracting data: Once elements are located, BeautifulSoup4 provides methods like
+'get_text','get' and on, we can use methods according to our need. this methods are 
+used to extract specific data such as text, attribute values or entire HTML fragments
+
+4. Handling Broken HTML - It robustly handles poorly formatted or incomplete HTML/XML
+ensuring that even irregular content can be parsed and processed
+
+5. Integration with parsers: while it primarily uses python's built-in parser, it
+can work with alternative parsers like lxml if installed,offering speed and flexibility optimizations
+
+
+NOTE - HTML (Hypertext Markup Language) is used for creating and structuring web pages with a focus on presenting content, while XML (Extensible Markup Language) is a flexible markup language designed for storing and transporting data.
+
+
+@3 nltk - Natural Language Toolkit is a python library used in Natural language processing for -
+
+1. Text processing - NLTK provides tools for tokenization (breaking text into words or sentences),
+stemming (reducing words to their base form), and lemmatization (reducing words to their dictionary form)
+
+2. Part of speech tagging - It includes functionality to identify and tag parts of speech 
+like nouns and verbs in sentences, which is essential for understanding the grammatical structure
+of text
+
+3. Named Entity Recognition (NER) - NLTK offers algorithms and pre-trained models to 
+identify and classify named entities like persons, organizations in text documents
+
+4. Text classification - it supports building and evaluating classification models for
+tasks like sentiment analysis, spam detection, and topic classification using ML algorithms
+
+
+5. Corpora (Text Datasets) and lexical resources - NLTk provides access to various 
+annotated text datasets (corpora) and lexical resources (like WordNet) for language
+analysis
+
+6. Integration with other libraries - NLTk integrates with other python libraries
+such as NumPy, scikit-learn, and TensorFlow for data manipulation, machine learning
+and deep learning tasks in NLP
+
+
+@4 OpenPyXL - it is a python library used for reading and writing Excel(.xlsx) files
+
+1. Excel File Handling - OpenPyXL allows you to create, modify, and extract data from
+Excel spreadsheets programmatically
+
+2. all types of data manipulation like add, delete,rename,and reorder excel files
+
+
+
+@5 Pandas - It is a library used for data manipulation and analysis
+
+1. Data Structures - Pandas provides two primary data structures: Series
+(1-Dimensional Labeled arrays either row or column) and DataFrame (2-Dimensional Labeled data structures
+resembling tables, both more than 1 row and columns)
+
+2. Data Manipulation - It offers powerful tools for reshaping, merging, slicing,
+indexing and transforming datasets. Operations include filtering rows/columns, 
+handling missing data, and applying functions across rows or columns
+
+3. Reading and writing data - various file formats such as CSV, Excel, SQL databases
+and JSON
+
+4. Data Cleaning - Handling missing values ('NA') by performing data normalization, removing
+duplicates, and converting data types, ensuring data quality for analysis
+
+5. Visualization - Pandas integrates with visualization libraries like matplotlib,
+and seaborn to create plots and graphs directly from data frames, aiding in data
+exploration and presentation
+
+
+@6 import re - re stands for regex it a regular expressions
+
+1. regular expressions(Regex) - re are sequences of characters that define a search
+pattern. they are powerful tools for string manipulation, pattern matching and 
+text parsing
+
+2. Basic functions - the 're' module offers functions like 're.search()','re.match()',
+and 're.findall()' to search for patterns within strings, providing flexibility in 
+locating specific substrings or structures.
+
+3. Pattern matching - regex allows specifying complex patterns of characters to match
+strings, including literals, character classes('[a-zA-Z]')
+
+
+@7 from nltk.corpus import stopwords 
+
+
+the 'stopwords' corpus from NLTK contains list of common stopwords for various languages.
+Stopwords are words that are commonly used in Natural Language but typically do not
+contribute to the meaning of a sentence and are often filtered out in text processing
+tasks like natural language understanding and analysis
+
+stopwords can be used to filter out non-essential words from text data during
+preprocessing steps in natural language processing tasks, improving the accuracy
+and efficiency of subsequent analyses
+
+such as [and, the, is,i,me,myself,we]
+
+
+@8 from nltk.tokenize import word_tokenize, sent_tokenize
+
+the 'word_tokenize' and 'sent_tokenize' functions from NLTK are used for tokenizing
+text into words and sentences. tokenization is a fundamental step in natural
+language processing (NLP) that breaks down text into meaningful units (tokens) for further
+analysis or processing
+
+'word_tokenize splits the 'text' into individual words and punctuation marks
+
+'sent_tokenize' divides the 'text' into separate sentences based on punctuation and capitalization cues.
+
+
+@9 nltk.download('punkt')
+
+punkt tokenizer is a pre-trained model used for tokenizing text into sentences and words,
+handling a variety of punctution and language constructs
+
+
+@10 
+stop_words = set()
+for file in stop_words_files:
+    with open(file, 'r') as f:
+        stop_words.update(f.read().splitlines())
+
+
+stop_words is initialized to store the unique stopwords
+
+the for-loop iterates over each file in 'stop_words_files'
+
+each file if opened in read mode('r')
+
+the stopwords are read from the file using 'f.read()', split into lines using
+splitlines() and then added to the stop_words set using update()
+
+set() ensures that stopwords are unique and avoids duplicates
+
+
+@11
+positive_words = positive_words - stop_words
+negative_words = negative_words - stop_words
+
+positive_words - stop_words creates a new set by subtracting any words in stop_words from
+positive_words
+
+
+@12
+def extract_text(url):
+    try:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        title = soup.find('title').text.strip()
+        paragraphs = soup.find_all('p')
+        article_text = ' '.join([p.get_text() for p in paragraphs])
+        return title, article_text
+    except Exception as e:
+        print(f"Error extracting {url}: {e}")
+        return None, None
+
+
+response = requests.get(url) - fetches the content from the provided URL
+
+soup = BeautifulSoup(response.content, 'html.parser') - parses the HTML content using BeautifulSoup
+
+NOTE- Parse meaning - Analyzes and converts the HTML content into a structured format that a program can understand and work with.
+
+title = soup.find('title').text.strip() - retrieves the text within the <title> tag
+
+paragraphs = soup.find_all('p') - finds all <p> tags, representing paragraphs in the HTML
+
+article_text = ' '.join[p.get_text() for p in paragraphs]) - concatenates the text from all paragraphs into a single string
+
+return title, article_text = it returns the value
+
+Exception handling - prints an error message if an exception occurs and returns 'None,None'
+
+
+@13 
+for index, row in input_df.iterrows():
+    url_id = row['URL_ID']
+    url = row['URL']
+    title, text = extract_text(url)
+    if text:
+        with open(f'{url_id}.txt', 'w', encoding='utf-8') as f:
+            f.write(f'{title}\n{text}')
+
+
+for index,row in input_df.iterrows() - it iterates over each row in the DataFrame
+
+extract_text(url) - calling this function to get the title and text
+
+if function - if text is available, it writes the title and text to a file named after the 'URL_ID'
+
+
+@14 
+
+cleaned_tokens = [word for word in tokens if word.lower() not in stop_words and word.isalpha()]
+
+[word for word in tokens if ...] - this is a list comprehension that creates a new list ('cleaned_tokens') by iterating over each 'word' in the 'tokens' list
+
+## if word.lower() not in stop_words and word.isalpha() - 
+word.lower() not in stop_words - converts the word to lowercase and checks if it is not in
+the 'stop_words' set
+
+purpose - Excludes common stop words (e.g - 'the', 'and') which are generally not useful for analysis
+
+
+#. word.isalpha() - check if the word consists only of alphabetic characters (no digits or punctuaion)
+
+purpose - ensures only words with letters are included, removing numbers and symbols
+
+
+purpose of whole code - 
+remove stop words so that we can focus on more informative words
+filter non-alphabetic tokens and focusing only on alphabetic characters to avoid cutters during analysis and to avoid confusing the code
+
+
+@15
+
+# Positive and Negative Scores
+positive_score = sum(1 for word in cleaned_tokens if word.lower() in positive_words) 
+negative_score = sum(1 for word in cleaned_tokens if word.lower() in negative_words)
+
+it iterates over cleaned_tokens, counting the match the given condition, means counting the occurences of postive and negative words
+
+
+
+
+@16 
+
+# Polarity Score Calculation
+polarity_score = (positive_score - negative_score) / ((positive_score + negative_score) + 0.000001)
+
+adding small number ie 0.000001 to the sum of positive and negative scores to prevents division by zero errors and adjusts for
+very small total scores
+
+as polarity score range varies between -1 (strong negative sentiment) to +1 (strong positive sentiment)
+
+Negative Polarity: Scores closer to -1 indicate a stronger negative sentiment or opinion.
+Neutral Polarity: A score around 0 suggests a neutral sentiment, indicating lack of strong positive or negative emotions.
+Positive Polarity: Scores closer to +1 signify a stronger positive sentiment or opinion.
+
+
+@17 
+# Subjectivity Score
+subjectivity_score = (positive_score + negative_score) / (len(cleaned_tokens) + 0.000001)
+
+This is the score that determines if a given text is objective or subjective
+
+if value is 0 then the text is completely objective(fact) and values closer to 1 is completely subjective(differs according to people's point of view)
+
+
+@18 
+
+Complex_words = Syllables: Syllables are units of sound within words and contain one vowel sound, often with surrounding consonants. For example, the word "elephant" has 3 syllables ("el-e-phant").
+
+
+percentage_complex_words = Percentage of complex words is the proportion of words with more than two characters in the total number of cleaned tokens.
+
+The purpose of calculating the percentage of complex words in text analysis is to:
+
+1. Measure Text Complexity: It provides an indication of how complex or sophisticated the vocabulary is within the analyzed text.
+  
+2. Evaluate Readability: Higher percentages suggest a text with longer words, potentially indicating more advanced reading level requirements.
+  
+3. Content Understanding: It helps in understanding the composition of the text and can be used in conjunction with other metrics to assess the linguistic richness or difficulty of the material.
+
+
+
+@19 
+
+fog_index - it is a readability metric used to assess the complexity of written text.
+
+Purpose - 
+1. A higher Fog Index indicates more complex and harder-to-read text, while a lower index suggests simpler and more easily understood content.
+
+2. Application: It helps writers, educators, and researchers gauge the readability of their texts, ensuring they align with their intended audience's reading comprehension level.
+
+3. Range - starts from 0 and can go higher, however, practical values often fall under 17
+
+
+@20 
+Personal Pronouns
+To calculate Personal Pronouns mentioned in the text, we use regex to find the counts of the words - “I,” “we,” “my,” “ours,” and “us”. Special care is taken so that the country name US is not included in the list
